@@ -21,7 +21,7 @@ DEFAULT_WIDTH = 800
 DEFAULT_HEIGHT = 600
 
 
-def g_viz(
+def alph(
     G,
     weight_attr=None,
     layout_fn: Union[Callable, None] = None,
@@ -44,7 +44,7 @@ def g_viz(
     height=DEFAULT_HEIGHT,
     padding=None,
 ):
-    """Convenience wrapper for nx_altair
+    """Plot NetworkX Graph with altair
 
     :param G:                               Graph to visualise
     :param weight_attr:                     Name of the weight attribute on graph edges, if weighted

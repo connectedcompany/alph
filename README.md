@@ -21,15 +21,15 @@ A network visualisation library using [Altair](https://altair-viz.github.io/) fo
 
 ## Usage
 
-Simply call the `g_viz` function with desired options.
+Simply call the `alph` function with desired options.
 
 Minimally, given a weighted network G:
 
 ```
-from cocolib.viz.charts.network import g_viz
+from alph import alph
 
 G = ...
-g_viz(G, weight_attr="weight")
+alph(G, weight_attr="weight")
 ```
 
 ## Examples

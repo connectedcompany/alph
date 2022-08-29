@@ -22,8 +22,10 @@ jobs:
         run: |
           echo "ARTEFACT=alph" >> $GITHUB_ENV
           echo "ROOT_PACKAGE=alph" >> $GITHUB_ENV
+
+      - name: Set version
+        run: |
           IFS="." read -ra LAST_VER <<< $(grep '^__version__' $ROOT_PACKAGE/__init__.py | cut -d'"' -f2) \
-            && echo $LAST_VER \
             && VERSION=${LAST_VER[0]}.${LAST_VER[1]}.$((${LAST_VER[2]}+1)) \
             && echo "VERSION=$VERSION" >> $GITHUB_ENV
 

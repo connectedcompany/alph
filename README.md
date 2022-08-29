@@ -12,7 +12,7 @@ A network visualisation library using [Altair](https://altair-viz.github.io/) fo
 - convenience args for node labels, halos
 - 1-level combo node support
 
-## How it works
+## How it works
 
 1. Generate a nx Graph
 2. Pick a layout

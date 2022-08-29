@@ -24,6 +24,7 @@ jobs:
           echo "ROOT_PACKAGE=alph" >> $GITHUB_ENV
           IFS="." read -ra LAST_VER <<< $(grep '^__version__' $ROOT_PACKAGE/__init__.py | cut -d'"' -f2) \
             && VERSION=${LAST_VER[0]}.${LAST_VER[1]}.$((${LAST_VER[2]}+1)) \
+            && echo $VERSION \
             && echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Install deps

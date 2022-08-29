@@ -25,7 +25,7 @@ config = {
         "altair>=4.1.0",
         "fa2 @ git+https://github.com/connectedcompany/forceatlas2.git@random-seed",
         "networkx>=2.6.3",
-        "numpy>=1.21.6",
+        "numpy>=1.22.4",
         "pandas>=1.3.5",
     ],
     "python_requires": ">=3.7",

@@ -1,7 +1,7 @@
 from datetime import date, datetime, timedelta
 
 import pandas as pd
-from gralt.preproc import ensure_non_serializable_datetime_types_absent
+from alph.preproc import ensure_non_serializable_datetime_types_absent
 from pytest import mark, raises
 
 

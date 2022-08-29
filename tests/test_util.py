@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import pytest
-from gralt.util import generate_interaction_graph, normalise_pos, nx_graph_from_edges
+from alph.util import generate_interaction_graph, normalise_pos, nx_graph_from_edges
 
 
 class Test_nx_graph_from_edges:

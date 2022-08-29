@@ -28,7 +28,7 @@ config = {
         "numpy>=1.22.4",
         "pandas>=1.3.5",
     ],
-    "python_requires": ">=3.7",
+    "python_requires": ">=3.8",
     "packages": find_packages(),
 }
 

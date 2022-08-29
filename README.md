@@ -1,4 +1,4 @@
-# **alph** - **al**tair for your nx.Gra**ph**
+# **alph** - <b>al</b>tair your nx.Gra<b>ph</b>
 
 A network visualisation library using [Altair](https://altair-viz.github.io/) for declarative, data driven renderering.
 

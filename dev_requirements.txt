@@ -1,0 +1,6 @@
+black   # code formatting
+faker   # generate fake data for examples
+nbmake  # test notebooks
+pytest
+twine
+wheel

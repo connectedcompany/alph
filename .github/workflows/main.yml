@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # fetch full history for all branches / tags as tests use this
+      - uses: snyk/actions/setup@master
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Setup environment
+        run: |
+          echo "ARTEFACT=gralt" >> $GITHUB_ENV
+          echo "ROOT_PACKAGE=gralt" >> $GITHUB_ENV
+          IFS="." read -ra LAST_VER <<< $(grep '^__version__' $ROOT_PACKAGE/__init__.py | cut -d'"' -f2) \
+            && VERSION=${LAST_VER[0]}.${LAST_VER[1]}.$((${LAST_VER[2]}+1)) \
+            && echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Install deps
+        run: |
+          python -mvenv venv
+          source venv/bin/activate
+          pip install -U pip
+          pip install -r dev_requirements.txt
+          pip install -r requirements.txt
+
+      - name: Unit tests
+        run: |
+          python -mvenv venv
+          source venv/bin/activate
+          pytest -s --nbmake tests/ examples.ipynb
+
+      - name: Snyk package deps scan
+        run: |
+          source venv/bin/activate
+          snyk test --file=setup.py
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Tag and push
+        run: |
+          # get git user deets from last commit
+          git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git config --local user.name "$(git log --format='%an' HEAD^!)"
+
+          git tag v$VERSION -m "Version $VERSION"
+          sed -i -E 's/(__version__\s*=\s*")\S+\.\S+\.\S+(")/\1'$VERSION'\2/g' $ROOT_PACKAGE/__init__.py
+          git add $ROOT_PACKAGE/__init__.py && git commit -m "Version ${VERSION}"
+          git push --follow-tags
+
+      - name: Prepare PyPI distribution
+        run: |
+          rm -rf build dist *.egg-info || true
+          source venv/bin/activate
+          python setup.py sdist bdist_wheel
+
+      # - name: Publish distribution 📦 to Test PyPI
+      #   uses: pypa/gh-action-pypi-publish@master
+      #   with:
+      #     password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      #     repository_url: https://test.pypi.org/legacy/
+
+      # # - name: Test install
+      # #   run: |
+      # #     python -mvenv venv-test-pypi
+      # #     source venv-test-pypi/bin/activate
+      # #     pip install -U pip
+      # #     pip install \
+      # #       --index-url https://test.pypi.org/simple/ \
+      # #       --extra-index-url https://pypi.org/simple \
+      # #       $ARTEFACT
+
+      # #     python -c "import $ROOT_PACKAGE; print($ROOT_PACKAGE.__version__)"
+
+      # - name: Publish distribution 📦 to PyPI
+      #   uses: pypa/gh-action-pypi-publish@master
+      #   with:
+      #     password: ${{ secrets.PYPI_API_TOKEN }}

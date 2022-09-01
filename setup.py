@@ -27,9 +27,11 @@ config = {
         "numpy>=1.22.4",
         "pandas>=1.3.5",
     ],
-    "optional_require": [
-        "fa2 @ git+https://github.com/connectedcompany/forceatlas2.git@random-seed",
-    ],
+    "extras_require": {
+        "fa2": [
+            "fa2 @ git+https://github.com/connectedcompany/forceatlas2.git@random-seed",
+        ]
+    },
     "python_requires": ">=3.8",
     "packages": find_packages(),
 }

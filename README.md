@@ -2,6 +2,13 @@
 
 A network visualisation library using [Altair](https://altair-viz.github.io/) for declarative, data driven renderering.
 
+## How it works
+
+1. Generate a nx Graph
+2. Pick a layout
+3. Define node and edge appearance attributes
+4. Plots layered nodes + edges
+
 ## Features
 
 - plot any NetworkX Graph
@@ -12,12 +19,19 @@ A network visualisation library using [Altair](https://altair-viz.github.io/) fo
 - convenience args for node labels, halos
 - 1-level combo node support
 
-## How it works
+## Installation
 
-1. Generate a nx Graph
-2. Pick a layout
-3. Define node and edge appearance attributes
-4. Plots layered nodes + edges
+```
+pip install alph
+```
+
+Adding a [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) layout implementation is highly recommended, and required for some of the examples.
+
+Unfortunately we are unable to distribute it due to licence incompatibility. But you can install it from our fork:
+
+```
+pip install git:ssh://...
+```
 
 ## Usage
 

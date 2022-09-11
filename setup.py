@@ -15,7 +15,7 @@ config = {
     "version": __version__,
     "name": "alph",
     "description": "alph",
-    "author": "connectedcompany.io",
+    "author": "Uros Rapajic",
     "long_description": long_description,
     "long_description_content_type": "text/markdown",
     "url": "https://github.com/connectedcompany/alph",
@@ -26,6 +26,7 @@ config = {
         "networkx>=2.6.3",
         "numpy>=1.22.4",
         "pandas>=1.3.5",
+        "sckikit-network>=0.27.1",
     ],
     "extras_require": {
         "fa2": [

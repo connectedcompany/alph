@@ -2,6 +2,13 @@
 
 A network visualisation library using [Altair](https://altair-viz.github.io/) for declarative, data driven renderering.
 
+## How it works
+
+1. Generate a nx Graph
+2. Pick a layout
+3. Define node and edge appearance attributes
+4. Plots layered nodes + edges
+
 ## Features
 
 - plot any NetworkX Graph
@@ -12,12 +19,19 @@ A network visualisation library using [Altair](https://altair-viz.github.io/) fo
 - convenience args for node labels, halos
 - 1-level combo node support
 
-## How it works
+## Installation
 
-1. Generate a nx Graph
-2. Pick a layout
-3. Define node and edge appearance attributes
-4. Plots layered nodes + edges
+```
+pip install alph
+```
+
+Adding a [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) layout implementation is highly recommended, and required for some of the examples.
+
+Unfortunately we are unable to distribute it due to licence incompatibility. But you can install it from our fork:
+
+```
+pip install git:ssh://...
+```
 
 ## Usage
 
@@ -48,6 +62,7 @@ See [`examples.ipynb`](./examples.ipynb).
   see [layout.py](./layout.py) for configuration options, and
   [this paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679)
   for more detail
+- ForceAtlas implementation within [scikit-network](https://github.com/sknetwork-team/scikit-network)
 - Any other that returns a NetworkX-style node positions dictionary
 
 ### Supported arguments
@@ -71,6 +86,7 @@ See [`examples.ipynb`](./examples.ipynb).
 | non_serializable_datetime_format | str                    | `%d %b %Y`           | Format string for non-serialisable date / time types that otherwise break Altair   |
 | width                            | int                    | `800`                | Figure width (px)                                                                  |
 | height                           | int                    | `600`                | Figure height (px)                                                                 |
+| prop_kwargs                      | dict                   |                      | Optional properties such as title                                                  |
 | padding                          | int                    |                      | Padding inside figure edges. No node centres will be placed outside this boundary. |
 
 ### Node args

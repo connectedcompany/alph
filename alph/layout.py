@@ -1,8 +1,67 @@
 import networkx as nx
+import numpy as np
 import pandas as pd
 from fa2 import ForceAtlas2
+from scipy.sparse import csr_matrix
+from sknetwork.embedding.force_atlas import ForceAtlas
 
 BARNES_HUT_ON_THRESHOLD = 500
+
+
+def force_atlas_sknet(G, n_components=2, init_seed=None, **fa2_args):
+    """
+    Wrapper for sckikit-network's implementation of Force Atlas 2, to accept nx Graphs and return a `pos`-like structure.
+
+    Parameters
+    ----------
+    G : nx.Graph
+        Graph to display
+    n_components : int = 2
+        Dimension of the graph layout.
+    n_iter : int = 50
+        Number of iterations to update positions.
+        If ``None``, use the value of self.n_iter.
+    approx_radius : float = -1
+        If a positive value is provided, only the nodes within this distance a given node are used to compute
+        the repulsive force.
+    lin_log : bool = False
+        If ``True``, use lin-log mode.
+    gravity_factor : float = 0.01
+        Gravity force scaling constant.
+    repulsive_factor : float = 0.1
+        Repulsive force scaling constant.
+    tolerance : float = 0.1
+        Tolerance defined in the swinging constant.
+    speed : float = 0.1
+        Speed constant.
+    speed_max : float = 10
+        Constant used to impose constrain on speed.
+    init_seed : int = None
+        Set initial positions repeatably - or randomly if no seed given
+
+    For full up-to-date parameterisation,
+    see https://github.com/sknetwork-team/scikit-network/blob/master/sknetwork/embedding/force_atlas.py
+    """
+
+    # randomise initial positions
+    pos_init = None
+    if init_seed is not None:
+        num_nodes = len(G.nodes)
+        pos_init_rng = np.random.default_rng(init_seed)
+        pos_init = pos_init_rng.standard_normal(
+            (num_nodes, n_components)
+        )  # standard_normal used w/ default_rng instead of randn
+
+    csr_graph = csr_matrix(
+        nx.to_scipy_sparse_array(G)
+    )  # to_scipy_sparse_matrix generates a pre-nx3.0 warning
+    fa = ForceAtlas(n_components=n_components, **fa2_args)
+    embedding = fa.fit_transform(csr_graph, pos_init=pos_init)
+
+    # normalise
+    embedding = embedding / np.max(np.abs(embedding))
+
+    return dict(zip(G.nodes(), embedding))
 
 
 def default_force_atlas_nan_coord_bug_alt_layout(G, weight_attr):
@@ -17,11 +76,10 @@ def force_atlas(
     nan_coord_bug_alt_layout=default_force_atlas_nan_coord_bug_alt_layout,
     **kwargs
 ):
-    if "iterations" in kwargs:
-        iterations = iterations
-        del kwargs["iterations"]
+    """
+    See https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679 for detail on params
+    """
 
-    #  see https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679 for detail on params
     fa2_kwargs = {
         **dict(
             # Behavior alternatives

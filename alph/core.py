@@ -42,6 +42,7 @@ def alph(
     # main viz args
     width=DEFAULT_WIDTH,
     height=DEFAULT_HEIGHT,
+    prop_kwargs=None,
     padding=None,
 ):
     """Plot NetworkX Graph with altair
@@ -68,6 +69,7 @@ def alph(
                                             appear in the dataset and trip up Altair
     :param width:                           Figure width (px)
     :param height:                          Figure height (px)
+    :param prop_kwargs:                     Additional figure layer properties, for example title
     :param padding:                         Padding inside figure edges. No node centres will be placed outside
                                             this boundary. As well as aesthetically, this is useful for ensuring
                                             nodes / captions stay inside the figure frame.
@@ -194,7 +196,7 @@ def alph(
         alt.layer(*final_layers).properties(
             width=width,
             height=height,
-            # *({"title": title} if title else {})
+            **(prop_kwargs or {}),
         )
         # see https://altair-viz.github.io/user_guide/scale_resolve.html
         .resolve_scale(

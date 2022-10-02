@@ -25,8 +25,9 @@ config = {
         "altair>=4.1.0",
         "networkx>=2.6.3",
         "numpy>=1.22.4",
-        "pandas>=1.3.5",
-        "sckikit-network>=0.27.1",
+        "pandas>=1.3.5,<1.5.0",  # 1.5.0 causes ValueError: columns cannot be a set when plotting altair facets
+        "pygraphviz>=1.10",
+        "scikit-network>=0.27.1",
     ],
     "extras_require": {
         "fa2": [

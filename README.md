@@ -62,6 +62,7 @@ See [`examples.ipynb`](./examples.ipynb).
   see [layout.py](./layout.py) for configuration options, and
   [this paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679)
   for more detail
+- ForceAtlas implementation within [scikit-network](https://github.com/sknetwork-team/scikit-network)
 - Any other that returns a NetworkX-style node positions dictionary
 
 ### Supported arguments
@@ -85,6 +86,7 @@ See [`examples.ipynb`](./examples.ipynb).
 | non_serializable_datetime_format | str                    | `%d %b %Y`           | Format string for non-serialisable date / time types that otherwise break Altair   |
 | width                            | int                    | `800`                | Figure width (px)                                                                  |
 | height                           | int                    | `600`                | Figure height (px)                                                                 |
+| prop_kwargs                      | dict                   |                      | Optional properties such as title                                                  |
 | padding                          | int                    |                      | Padding inside figure edges. No node centres will be placed outside this boundary. |
 
 ### Node args

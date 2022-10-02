@@ -41,7 +41,7 @@ jobs:
         run: |
           python -mvenv venv
           source venv/bin/activate
-          pytest -s --nbmake tests/ examples.ipynb
+          pytest -s --nbmake tests/ examples/examples.ipynb examples/layouts.ipynb
 
       - name: Snyk package deps scan
         run: |

@@ -31,7 +31,7 @@ jobs:
 
       - name: Install deps
         run: |
-          apt install graphviz
+          sudo apt install graphviz
           python -mvenv venv
           source venv/bin/activate
           pip install -U pip

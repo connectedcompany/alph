@@ -65,6 +65,9 @@ See [`examples.ipynb`](./examples.ipynb).
 - ForceAtlas implementation within [scikit-network](https://github.com/sknetwork-team/scikit-network)
 - Any other that returns a NetworkX-style node positions dictionary
 
+Some examples (from [examples/layouts.ipynb]()):
+![Example layouts](examples/layouts.png)
+
 ### Supported arguments
 
 | arg                              | type(s)                | default              | description                                                                        |

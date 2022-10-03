@@ -31,7 +31,7 @@ jobs:
 
       - name: Install deps
         run: |
-          sudo apt install graphviz
+          sudo apt install build-essential graphviz
           python -mvenv venv
           source venv/bin/activate
           pip install -U pip

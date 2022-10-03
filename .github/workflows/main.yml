@@ -25,7 +25,7 @@ jobs:
 
       - name: Set version
         run: |
-          IFS="." read -ra LAST_VER <<< $(grep '^__version__' $ROOT_PACKAGE/__init__.py | cut -d'"' -f2) \
+          IFS="." read -ra LAST_VER <<< $(grep '^__version__' $ROOT_PACKAGE/__version__.py | cut -d'"' -f2) \
             && VERSION=${LAST_VER[0]}.${LAST_VER[1]}.$((${LAST_VER[2]}+1)) \
             && echo "VERSION=$VERSION" >> $GITHUB_ENV
 
@@ -58,8 +58,8 @@ jobs:
           git config --local user.name "$(git log --format='%an' HEAD^!)"
 
           git tag v$VERSION -m "Version $VERSION"
-          sed -i -E 's/(__version__\s*=\s*")\S+\.\S+\.\S+(")/\1'$VERSION'\2/g' $ROOT_PACKAGE/__init__.py
-          git add $ROOT_PACKAGE/__init__.py && git commit -m "Version ${VERSION}"
+          sed -i -E 's/(__version__\s*=\s*")\S+\.\S+\.\S+(")/\1'$VERSION'\2/g' $ROOT_PACKAGE/__version__.py
+          git add $ROOT_PACKAGE/__version__.py && git commit -m "Version ${VERSION}"
           git push --follow-tags
 
       # - name: Prepare PyPI distribution

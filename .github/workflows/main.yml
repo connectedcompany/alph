@@ -62,17 +62,17 @@ jobs:
           git add $ROOT_PACKAGE/__init__.py && git commit -m "Version ${VERSION}"
           git push --follow-tags
 
-      - name: Prepare PyPI distribution
-        run: |
-          rm -rf build dist *.egg-info || true
-          source venv/bin/activate
-          python setup.py sdist bdist_wheel
+      # - name: Prepare PyPI distribution
+      #   run: |
+      #     rm -rf build dist *.egg-info || true
+      #     source venv/bin/activate
+      #     python setup.py sdist bdist_wheel
 
-      - name: Publish distribution 📦 to Test PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
+      # - name: Publish distribution 📦 to Test PyPI
+      #   uses: pypa/gh-action-pypi-publish@master
+      #   with:
+      #     password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      #     repository_url: https://test.pypi.org/legacy/
 
       # # - name: Test install
       # #   run: |

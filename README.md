@@ -30,7 +30,7 @@ Adding a [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) layout im
 Unfortunately we are unable to distribute it due to licence incompatibility. But you can install it from our fork:
 
 ```
-pip install git:ssh://...
+pip install git+https://github.com/connectedcompany/forceatlas2.git@random-seed
 ```
 
 ## Usage

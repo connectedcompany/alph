@@ -26,7 +26,7 @@ config = {
         "pandas<1.5.0",  # 1.5.0 causes ValueError: columns cannot be a set when plotting altair facets
         "pygraphviz>=1.10",
         "scikit-network>=0.27.1",
-        # "fa2 @ git+https://github.com/connectedcompany/forceatlas2.git@random-seed",
+        # "cython fa2 @ git+https://github.com/connectedcompany/forceatlas2.git@random-seed",
     ],
     "python_requires": ">=3.8",
     "packages": find_packages(),

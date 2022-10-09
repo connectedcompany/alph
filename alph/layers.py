@@ -383,8 +383,7 @@ def default_nodes_layer(**kwargs):
     return nodes_layer(
         **{
             **dict(
-                # r=5,
-                size=100,
+                size=10**2,
                 halo_offset=None,
                 label_offset=12,
             ),

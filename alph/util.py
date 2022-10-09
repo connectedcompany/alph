@@ -156,3 +156,24 @@ def generate_interaction_graph(
     # name the nodes
     node_mapping = dict(zip(range(n_nodes), nodes))
     return nx.relabel_nodes(G, node_mapping)
+
+
+def is_lab_notebook():
+    import re
+
+    import psutil
+
+    return any(re.search("jupyter-lab", x) for x in psutil.Process().parent().cmdline())
+
+
+def set_altair_renderer():
+    """
+    To facilitate generating GitHub-friendly previews, sense whether we're in a
+    jupyterlab environment and if so set mimetype renderer. This is a bit hacky,
+    but only needs to work for the maintairer for now, and not get in the way for others.
+    """
+
+    if is_lab_notebook():
+        import altair as alt
+
+        alt.renderers.enable("mimetype")  # or jupyterlab - should be synonymous

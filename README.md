@@ -66,7 +66,7 @@ See [`examples.ipynb`](./examples.ipynb).
 - Any other that returns a NetworkX-style node positions dictionary
 
 Some examples (from [examples/layouts.ipynb]()):
-![Example layouts](examples/layouts.png)
+![Example layouts](examples/images/layouts.png)
 
 ### Supported arguments
 

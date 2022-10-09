@@ -66,7 +66,10 @@ See [`examples.ipynb`](./examples.ipynb).
 - Any other that returns a NetworkX-style node positions dictionary
 
 Some examples (from [examples/layouts.ipynb]()):
-![Example layouts](examples/images/layouts.png)
+
+![Layouts menu](examples/images/layouts.png)
+
+![Geo-location based layout](examples/images/flight_routes.png)
 
 ### Supported arguments
 

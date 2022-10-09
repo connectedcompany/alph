@@ -385,7 +385,7 @@ def default_nodes_layer(**kwargs):
             **dict(
                 # r=5,
                 size=100,
-                halo_offset=1,
+                halo_offset=None,
                 label_offset=12,
             ),
             **kwargs,

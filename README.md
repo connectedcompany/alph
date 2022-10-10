@@ -48,9 +48,21 @@ alph(G, weight_attr="weight")
 
 ## Examples
 
-See [`examples.ipynb`](./examples.ipynb).
+See [`examples`](./examples).
 
-## API
+A taster:
+
+Some of the supported layouts (from the [layouts gallery example](examples/3_layouts_gallery.ipynb)):
+
+![Layouts gallery](examples/images/layouts.png)
+
+Use of geolocation coordinates for graph layout, (from the [flight routes example](examples/5_flight_routes.ipynb)):
+
+![Geo-location based layout](examples/images/flight_routes.png)
+
+---
+
+# API
 
 ### Supported layout functions
 
@@ -64,12 +76,6 @@ See [`examples.ipynb`](./examples.ipynb).
   for more detail
 - ForceAtlas implementation within [scikit-network](https://github.com/sknetwork-team/scikit-network)
 - Any other that returns a NetworkX-style node positions dictionary
-
-Some examples (from [examples/layouts.ipynb]()):
-
-![Layouts menu](examples/images/layouts.png)
-
-![Geo-location based layout](examples/images/flight_routes.png)
 
 ### Supported arguments
 

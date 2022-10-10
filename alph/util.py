@@ -114,7 +114,7 @@ def generate_interaction_graph(
     ]
     if not nodes:
         return nx.Graph()
-    np_random = np.random if seed is None else np.random.RandomState(seed)
+    np_random = np.random if seed is None else np.random.default_rng(seed)
 
     n_nodes = nodes if isinstance(nodes, int) else len(nodes)
 
@@ -125,7 +125,7 @@ def generate_interaction_graph(
     elif n_nodes == 2:
         G = nx.Graph([(0, 1)])
     else:
-        G = nx.directed.scale_free_graph(n=n_nodes)
+        G = nx.directed.scale_free_graph(n=n_nodes, seed=seed)
 
     if cast_to:
         G = cast_to(G)

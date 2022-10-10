@@ -7,15 +7,14 @@ A network visualisation library using [Altair](https://altair-viz.github.io/) fo
 1. Get your data into a NetworkX Graph
 2. Pick a network layout function, or bring your own node coordinates
 3. Define node and edge style attributes
-4. Plot nodes and edges using a simple function call
+4. Plot using a simple function call
 
 ## Features
 
 - plot any NetworkX Graph
-- support for any Python layout function returning a NetworkX `pos`
-  structure (just a dict like `{node_id: (x,y), ...}`)
-- Altair-style data driven node and edge decoration - size,
-  color, stroke, opacity, scales, conditions and more
+- support for any layout expressed as a NetworkX `pos` structure (a dict like `{node_id: (x,y), ...}`)
+- several readily accessible and tunable layout functions (see [example](examples/3_layouts_gallery.ipynb))
+- Altair-style data driven node and edge styling - size, colour, stroke, opacity, scales, conditionals and more
 - convenience args for node labels, halos
 - experimental 1-level "combo" node support
 

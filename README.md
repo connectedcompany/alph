@@ -4,20 +4,20 @@ A network visualisation library using [Altair](https://altair-viz.github.io/) fo
 
 ## How it works
 
-1. Generate a nx Graph
-2. Pick a layout
-3. Define node and edge appearance attributes
-4. Plots layered nodes + edges
+1. Get your data into a NetworkX Graph
+2. Pick a network layout function, or bring your own node coordinates
+3. Define node and edge style attributes
+4. Plot nodes and edges using a simple function call
 
 ## Features
 
 - plot any NetworkX Graph
 - support for any Python layout function returning a NetworkX `pos`
-  structure
+  structure (just a dict like `{node_id: (x,y), ...}`)
 - Altair-style data driven node and edge decoration - size,
   color, stroke, opacity, scales, conditions and more
 - convenience args for node labels, halos
-- 1-level combo node support
+- experimental 1-level "combo" node support
 
 ## Installation
 
@@ -48,17 +48,13 @@ alph(G, weight_attr="weight")
 
 ## Examples
 
-See [`examples`](./examples).
+See [`examples`](./examples). Here's a taster.
 
-A taster:
+- Some of the supported layouts (from the [layouts gallery example](examples/3_layouts_gallery.ipynb)):
+  ![Layouts gallery](examples/images/layouts.png)
 
-Some of the supported layouts (from the [layouts gallery example](examples/3_layouts_gallery.ipynb)):
-
-![Layouts gallery](examples/images/layouts.png)
-
-Use of geolocation coordinates for graph layout, (from the [flight routes example](examples/5_flight_routes.ipynb)):
-
-![Geo-location based layout](examples/images/flight_routes.png)
+- Use of geolocation coordinates for graph layout, (from the [flight routes example](examples/5_flight_routes.ipynb)):
+  ![Geo-location based layout](examples/images/flight_routes.png)
 
 ---
 
@@ -141,7 +137,6 @@ Use of geolocation coordinates for graph layout, (from the [flight routes exampl
 
 ## Known limitations
 
-- One combo level currently supported
 - Node `size` attribute does not support all Altair options - currently only
   `alt.value` and `alt.Size` with linear `domain` and `range` scales. More will be
   supported as needed.
@@ -150,6 +145,8 @@ Use of geolocation coordinates for graph layout, (from the [flight routes exampl
   having to calculate label and halo positions when node sizes vary.
 
   Will review this tradeoff based on in-use experience.
+
+- One combo level currently supported
 
 ## See also
 

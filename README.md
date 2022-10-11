@@ -34,15 +34,19 @@ pip install git+https://github.com/connectedcompany/forceatlas2.git@random-seed
 
 > #### Why is this install separate?
 >
-> ForceAtlas is a great algorithm from the Gephi team, and this implementation is an excellent, performant python port.
+> [ForceAtlas2](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679) is a classic,
+> feedback-led layout algorithm from the Gephi team, and the [forceatlas2 package](https://github.com/bhargavchippada/forceatlas2)
+> implementation is an excellent, performant Python port.
 >
-> However, recently releases have been sporradic, though the author remains committed to maintaining it long term. Hence we've created a fork that currently incorporates a simple change that enables deterministic layouts.
+> Recently, releases of that package have been sporradic, though there have been assurances about intent
+> to maintain it long term. Hence we've created a temporary fork to be able to roll in changes. Currently,
+> the fork incorporates a simple change that enables deterministic layouts.
 >
-> The fact that the library, and some of the works it is derived from, are GPL licensed means care is needed when distributing and linking to it.
+> The fact that the library, and some of the works it is derived from, are GPL licensed means care is needed
+> when distributing and linking to it. Hence we're making its install optional.
 >
-> Hence we're making its install optional.
->
-> Since alph uses a plugin design for layout providers (see > below for the various options), this is straightforward.
+> Since alph uses a plugin design for layout providers (see > below for the various options), this is
+> straightforward for us to accommodate, and maintain explicit separation if GPL is an issue.
 
 ## Usage
 

@@ -6,311 +6,373 @@ graph
   [
     id 0
     label "Beak"
+    sex "M"
   ]
   node
   [
     id 1
     label "Beescratch"
+    sex "M"
   ]
   node
   [
     id 2
     label "Bumper"
+    sex "M"
   ]
   node
   [
     id 3
     label "CCL"
+    sex "F"
   ]
   node
   [
     id 4
     label "Cross"
+    sex "M"
   ]
   node
   [
     id 5
     label "DN16"
+    sex "F"
   ]
   node
   [
     id 6
     label "DN21"
+    sex "M"
   ]
   node
   [
     id 7
     label "DN63"
+    sex "M"
   ]
   node
   [
     id 8
     label "Double"
+    sex "F"
   ]
   node
   [
     id 9
     label "Feather"
+    sex "M"
   ]
   node
   [
     id 10
     label "Fish"
+    sex "F"
   ]
   node
   [
     id 11
     label "Five"
+    sex "F"
   ]
   node
   [
     id 12
     label "Fork"
+    sex "M"
   ]
   node
   [
     id 13
     label "Gallatin"
+    sex "M"
   ]
   node
   [
     id 14
     label "Grin"
+    sex "F"
   ]
   node
   [
     id 15
     label "Haecksel"
+    sex "M"
   ]
   node
   [
     id 16
     label "Hook"
+    sex "F"
   ]
   node
   [
     id 17
     label "Jet"
+    sex "M"
   ]
   node
   [
     id 18
     label "Jonah"
+    sex "M"
   ]
   node
   [
     id 19
     label "Knit"
+    sex "M"
   ]
   node
   [
     id 20
     label "Kringel"
+    sex "F"
   ]
   node
   [
     id 21
     label "MN105"
+    sex "M"
   ]
   node
   [
     id 22
     label "MN23"
+    sex "M"
   ]
   node
   [
     id 23
     label "MN60"
+    sex "M"
   ]
   node
   [
     id 24
     label "MN83"
+    sex "M"
   ]
   node
   [
     id 25
     label "Mus"
+    sex "M"
   ]
   node
   [
     id 26
     label "Notch"
+    sex "M"
   ]
   node
   [
     id 27
     label "Number1"
+    sex "M"
   ]
   node
   [
     id 28
     label "Oscar"
+    sex "M"
   ]
   node
   [
     id 29
     label "Patchback"
+    sex "M"
   ]
   node
   [
     id 30
     label "PL"
+    sex "M"
   ]
   node
   [
     id 31
     label "Quasi"
+    sex "M"
   ]
   node
   [
     id 32
     label "Ripplefluke"
+    sex "U"
   ]
   node
   [
     id 33
     label "Scabs"
+    sex "F"
   ]
   node
   [
     id 34
     label "Shmuddel"
+    sex "F"
   ]
   node
   [
     id 35
     label "SMN5"
+    sex "M"
   ]
   node
   [
     id 36
     label "SN100"
+    sex "F"
   ]
   node
   [
     id 37
     label "SN4"
+    sex "F"
   ]
   node
   [
     id 38
     label "SN63"
+    sex "F"
   ]
   node
   [
     id 39
     label "SN89"
+    sex "F"
   ]
   node
   [
     id 40
     label "SN9"
+    sex "F"
   ]
   node
   [
     id 41
     label "SN90"
+    sex "M"
   ]
   node
   [
     id 42
     label "SN96"
+    sex "M"
   ]
   node
   [
     id 43
     label "Stripes"
+    sex "F"
   ]
   node
   [
     id 44
     label "Thumper"
+    sex "M"
   ]
   node
   [
     id 45
     label "Topless"
+    sex "M"
   ]
   node
   [
     id 46
     label "TR120"
+    sex "F"
   ]
   node
   [
     id 47
     label "TR77"
+    sex "F"
   ]
   node
   [
     id 48
     label "TR82"
+    sex "U"
   ]
   node
   [
     id 49
     label "TR88"
+    sex "F"
   ]
   node
   [
     id 50
     label "TR99"
+    sex "F"
   ]
   node
   [
     id 51
     label "Trigger"
+    sex "F"
   ]
   node
   [
     id 52
     label "TSN103"
+    sex "F"
   ]
   node
   [
     id 53
     label "TSN83"
+    sex "U"
   ]
   node
   [
     id 54
     label "Upbang"
+    sex "M"
   ]
   node
   [
     id 55
     label "Vau"
+    sex "F"
   ]
   node
   [
     id 56
     label "Wave"
+    sex "F"
   ]
   node
   [
     id 57
     label "Web"
+    sex "M"
   ]
   node
   [
     id 58
     label "Whitetip"
+    sex "F"
   ]
   node
   [
     id 59
     label "Zap"
+    sex "U"
   ]
   node
   [
     id 60
     label "Zig"
+    sex "M"
   ]
   node
   [
     id 61
     label "Zipfel"
+    sex "M"
   ]
   edge
   [

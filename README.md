@@ -71,6 +71,9 @@ See [`examples`](./examples). Here's a taster:
 - Use of geolocation coordinates for graph layout, (from the [flight routes example](examples/5_flight_routes.ipynb)):
   ![Geo-location based layout](examples/images/flight_routes.png)
 
+- A styled association network (from the [bottlenose dolphins example](examples/4_dolphins.ipynb)):
+  ![Dolphins](examples/images/dolphins.png)
+
 - "Combo"-style layout (experimental) - category-driven node grouping with edge weight aggregation, from the [Les Mis example](examples/6_les_mis_experimental_combo.ipynb):
   ![Combo layout](examples/images/combo.png)
 

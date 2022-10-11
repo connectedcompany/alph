@@ -29,7 +29,7 @@ config = {
         # "cython fa2 @ git+https://github.com/connectedcompany/forceatlas2.git@random-seed",
     ],
     "python_requires": ">=3.8",
-    "packages": find_packages(),
+    "packages": find_packages(exclude=["*tests.*", "*examples.*"]),
 }
 
 setup(**config)

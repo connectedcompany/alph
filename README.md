@@ -1,4 +1,4 @@
-# **alph** - <b>al</b>tair your nx.Gra<b>ph</b>
+# **alph** - <b>al</b>tair your gra<b>ph</b>
 
 A network visualisation library using [Altair](https://altair-viz.github.io/) for declarative, data driven renderering.
 
@@ -8,6 +8,8 @@ A network visualisation library using [Altair](https://altair-viz.github.io/) fo
 2. Pick a network layout function, or bring your own node coordinates
 3. Define node and edge style attributes
 4. Plot using a simple function call
+
+Best bet is probably to dive straight into the [examples](./examples/), and come back to the API documentation below as needed.
 
 ## Features
 
@@ -24,13 +26,23 @@ A network visualisation library using [Altair](https://altair-viz.github.io/) fo
 pip install alph
 ```
 
-Adding a [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) layout implementation is highly recommended, and required for some of the examples.
-
-Unfortunately we are unable to distribute it due to licence incompatibility. But you can install it from our fork:
+Additionally, we currently recommend installing the [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) library from our fork:
 
 ```
 pip install git+https://github.com/connectedcompany/forceatlas2.git@random-seed
 ```
+
+> #### Why is this install separate?
+>
+> ForceAtlas is a great algorithm from the Gephi team, and this implementation is an excellent, performant python port.
+>
+> However, recently releases have been sporradic, though the author remains committed to maintaining it long term. Hence we've created a fork that currently incorporates a simple change that enables deterministic layouts.
+>
+> The fact that the library, and some of the works it is derived from, are GPL licensed means care is needed when distributing and linking to it.
+>
+> Hence we're making its install optional.
+>
+> Since alph uses a plugin design for layout providers (see > below for the various options), this is straightforward.
 
 ## Usage
 
@@ -47,7 +59,7 @@ alph(G, weight_attr="weight")
 
 ## Examples
 
-See [`examples`](./examples). Here's a taster.
+See [`examples`](./examples). Here's a taster:
 
 - Some of the supported layouts (from the [layouts gallery example](examples/3_layouts_gallery.ipynb)):
   ![Layouts gallery](examples/images/layouts.png)

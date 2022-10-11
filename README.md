@@ -55,6 +55,9 @@ See [`examples`](./examples). Here's a taster.
 - Use of geolocation coordinates for graph layout, (from the [flight routes example](examples/5_flight_routes.ipynb)):
   ![Geo-location based layout](examples/images/flight_routes.png)
 
+- "Combo"-style layout (experimental) - category-driven node grouping with edge weight aggregation:
+  ![Combo layout](examples/images/combo.png)
+
 ---
 
 # API

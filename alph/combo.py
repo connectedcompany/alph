@@ -20,7 +20,7 @@ def combo_graph_mapper(
     include_edgeless_combo_nodes=True,
 ):
     """
-    :param combo_group_by:
+    :param combo_group_by:              Attribute to group nodes by when forming combo nodes
     :params empty_combo_attr_action:    What to do for nodes without combo attr:
                                         - "drop" drops them
                                         - "group" treats empty combo attr as own category
@@ -31,6 +31,7 @@ def combo_graph_mapper(
         isinstance(combo_group_by, str) or len(combo_group_by) == 1
     ), "for now, just one layer"
     assert empty_combo_attr_action in ["drop", "group", "promote"]
+
     combo_group_by = (
         combo_group_by if isinstance(combo_group_by, str) else combo_group_by[0]
     )
@@ -84,7 +85,13 @@ def combo_graph_mapper(
     combo_edges = (
         df[combo_edge_selector]
         .groupby(["source", "target"], dropna=False)
-        .agg(weight=(weight_attr, "sum") if weight_attr else ("target", "count"))
+        .agg(
+            **{
+                weight_attr: (
+                    (weight_attr, "sum") if weight_attr else ("target", "count")
+                )
+            }
+        )
         .reset_index()
     )
 

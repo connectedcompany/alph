@@ -318,6 +318,7 @@ def generate_combo_layers(
         if G_intra_combo.number_of_nodes() == 0:
             print(f"Skipping nodeless graph for combo category {combo_val}")
             continue
+
         assert (
             combo_val in combo_pos
         ), f"Expected combo cat {combo_val} to be in combo pos {combo_pos}"
@@ -405,7 +406,7 @@ def default_intra_combo_edges_layer(weight_attr, **kwargs):
                 ),
                 opacity=alt.Size(
                     weight_attr,
-                    scale=alt.Scale(range=[0.5, 3]),
+                    scale=alt.Scale(range=[0.5, 1]),
                     legend=None,
                 ),
             ),

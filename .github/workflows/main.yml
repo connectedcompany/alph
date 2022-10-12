@@ -85,7 +85,7 @@ jobs:
             --extra-index-url https://pypi.org/simple \
             $ARTEFACT
 
-          python -c "import $ROOT_PACKAGE; print($ROOT_PACKAGE.__version__)"
+          python -c "import $ROOT_PACKAGE.__version__; print($ROOT_PACKAGE.__version__.__version__)"
 
       # - name: Publish distribution 📦 to PyPI
       #   uses: pypa/gh-action-pypi-publish@master

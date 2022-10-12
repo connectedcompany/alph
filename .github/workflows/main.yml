@@ -43,7 +43,7 @@ jobs:
         run: |
           python -mvenv venv
           source venv/bin/activate
-          PYTHONPATH=. pytest -s --nbmake  --ignore=examples/5_flight_routes.ipynb tests/ examples/*.ipynb
+          PYTHONPATH=. pytest -s --nbmake  --ignore=examples/5_flight_routes.ipynb tests/ examples/
 
       - name: Snyk package deps scan
         run: |

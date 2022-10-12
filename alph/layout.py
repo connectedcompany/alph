@@ -1,9 +1,6 @@
 import networkx as nx
 import numpy as np
 import pandas as pd
-from fa2 import ForceAtlas2
-from scipy.sparse import csr_matrix
-from sknetwork.embedding.force_atlas import ForceAtlas
 
 BARNES_HUT_ON_THRESHOLD = 500
 
@@ -43,6 +40,9 @@ def force_atlas_sknet(G, n_components=2, init_seed=None, **fa2_args):
     see https://github.com/sknetwork-team/scikit-network/blob/master/sknetwork/embedding/force_atlas.py
     """
 
+    from scipy.sparse import csr_matrix
+    from sknetwork.embedding.force_atlas import ForceAtlas
+
     # randomise initial positions
     pos_init = None
     if init_seed is not None:
@@ -79,6 +79,9 @@ def force_atlas(
     """
     See https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679 for detail on params
     """
+
+    # fa2 is optional
+    from fa2 import ForceAtlas2
 
     fa2_kwargs = {
         **dict(

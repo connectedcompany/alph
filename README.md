@@ -1,23 +1,32 @@
-# **alph** - <b>al</b>tair your nx.Gra<b>ph</b>
+# **alph** - <b>al</b>tair your gra<b>ph</b>
 
 A network visualisation library using [Altair](https://altair-viz.github.io/) for declarative, data driven renderering.
 
+## Why
+
+Tidy, legible graph visualisations are rarely achieved at the first attempt. Usually some styling and layout tweaking is required, perhaps pruning too for larger graphs.
+
+The Python ecosystem has all the ingredients, however they span multiple libraries, each with its own learning curve, data formats and other idiosyncrasies.
+
+Alph aims to facilitate the creation of "legible" static graphs by making experiments with styling, layouts and structure easier and more consistent.
+
 ## How it works
 
-1. Generate a nx Graph
-2. Pick a layout
-3. Define node and edge appearance attributes
-4. Plots layered nodes + edges
+1. Get your data into a NetworkX Graph
+2. Pick a network layout function, or bring your own node coordinates
+3. Define node and edge style attributes
+4. Plot using a simple function call
+
+Best bet is probably to dive straight into the [examples](./examples/), and come back to the API documentation below as needed.
 
 ## Features
 
 - plot any NetworkX Graph
-- support for any Python layout function returning a NetworkX `pos`
-  structure
-- Altair-style data driven node and edge decoration - size,
-  color, stroke, opacity, scales, conditions and more
+- support for any layout expressed as a NetworkX `pos` structure (a dict like `{node_id: (x,y), ...}`)
+- several readily accessible and tunable layout functions (see [example](examples/3_layouts_gallery.ipynb))
+- Altair-style data driven node and edge styling - size, colour, stroke, opacity, scales, conditionals and more
 - convenience args for node labels, halos
-- 1-level combo node support
+- experimental 1-level "combo" node support
 
 ## Installation
 
@@ -25,13 +34,27 @@ A network visualisation library using [Altair](https://altair-viz.github.io/) fo
 pip install alph
 ```
 
-Adding a [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) layout implementation is highly recommended, and required for some of the examples.
-
-Unfortunately we are unable to distribute it due to licence incompatibility. But you can install it from our fork:
+Additionally, we currently recommend installing the [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) library from our fork, along with cython for speedup:
 
 ```
-pip install git:ssh://...
+pip install cython git+https://github.com/connectedcompany/forceatlas2.git@random-seed
 ```
+
+> #### Why is this install separate?
+>
+> [ForceAtlas2](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679) is a classic,
+> user feedback led layout algorithm from the [Gephi](https://gephi.org/) team, and the [forceatlas2 package](https://github.com/bhargavchippada/forceatlas2)
+> implementation is an excellent, performant Python port.
+>
+> Recently, releases of that package have been sporradic, though there have been assurances about intent
+> to maintain it long term. Hence we've created a temporary fork to be able to roll in changes. Currently,
+> the fork incorporates a simple change that enables deterministic layouts.
+>
+> The fact that the library, and some of the works it is derived from, are GPL licensed means care is needed
+> when distributing and linking to it. Hence we're making its install optional.
+>
+> Since alph uses a plugin design for layout providers (see below for the various options), this is
+> straightforward for us to accommodate, and maintain explicit separation if GPL is an issue.
 
 ## Usage
 
@@ -48,9 +71,23 @@ alph(G, weight_attr="weight")
 
 ## Examples
 
-See [`examples.ipynb`](./examples.ipynb).
+See [`examples`](./examples). Here's a taster:
 
-## API
+- Some of the supported layouts (from the [layouts gallery example](examples/3_layouts_gallery.ipynb)):
+  ![Layouts gallery](examples/images/layouts.png)
+
+- Use of geolocation coordinates for graph layout, (from the [flight routes example](examples/5_flight_routes.ipynb)):
+  ![Geo-location based layout](examples/images/flight_routes.png)
+
+- A styled interaction network (from the [dolphins example](examples/4_dolphins.ipynb)):
+  ![Dolphins](examples/images/dolphins.png)
+
+- "Combo"-style layout (experimental) - category-driven node grouping with edge weight aggregation, from the [Les Mis example](examples/6_les_mis_experimental_combo.ipynb):
+  ![Combo layout](examples/images/combo.png)
+
+---
+
+# API
 
 ### Supported layout functions
 
@@ -129,7 +166,6 @@ See [`examples.ipynb`](./examples.ipynb).
 
 ## Known limitations
 
-- One combo level currently supported
 - Node `size` attribute does not support all Altair options - currently only
   `alt.value` and `alt.Size` with linear `domain` and `range` scales. More will be
   supported as needed.
@@ -138,6 +174,8 @@ See [`examples.ipynb`](./examples.ipynb).
   having to calculate label and halo positions when node sizes vary.
 
   Will review this tradeoff based on in-use experience.
+
+- One combo level currently supported
 
 ## See also
 

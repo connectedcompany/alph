@@ -63,29 +63,29 @@ jobs:
           git add $ROOT_PACKAGE/__version__.py && git commit -m "Version ${VERSION}"
           git push --follow-tags
 
-      # - name: Prepare PyPI distribution
-      #   run: |
-      #     rm -rf build dist *.egg-info || true
-      #     source venv/bin/activate
-      #     python setup.py sdist bdist_wheel
+      - name: Prepare PyPI distribution
+        run: |
+          rm -rf build dist *.egg-info || true
+          source venv/bin/activate
+          python setup.py sdist bdist_wheel
 
-      # - name: Publish distribution 📦 to Test PyPI
-      #   uses: pypa/gh-action-pypi-publish@master
-      #   with:
-      #     password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-      #     repository_url: https://test.pypi.org/legacy/
+      - name: Publish distribution 📦 to Test PyPI
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          repository_url: https://test.pypi.org/legacy/
 
-      # # - name: Test install
-      # #   run: |
-      # #     python -mvenv venv-test-pypi
-      # #     source venv-test-pypi/bin/activate
-      # #     pip install -U pip
-      # #     pip install \
-      # #       --index-url https://test.pypi.org/simple/ \
-      # #       --extra-index-url https://pypi.org/simple \
-      # #       $ARTEFACT
+      - name: Test install
+        run: |
+          python -mvenv venv-test-pypi
+          source venv-test-pypi/bin/activate
+          pip install -U pip
+          pip install \
+            --index-url https://test.pypi.org/simple/ \
+            --extra-index-url https://pypi.org/simple \
+            $ARTEFACT
 
-      # #     python -c "import $ROOT_PACKAGE; print($ROOT_PACKAGE.__version__)"
+          python -c "import $ROOT_PACKAGE; print($ROOT_PACKAGE.__version__)"
 
       # - name: Publish distribution 📦 to PyPI
       #   uses: pypa/gh-action-pypi-publish@master

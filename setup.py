@@ -12,15 +12,16 @@ __version__ = re.search(
     io.open("alph/__version__.py", encoding="utf_8_sig").read(),
 ).group(1)
 
-config = {
-    "version": __version__,
-    "name": "alph",
-    "description": "alph",
-    "author": "Uros Rapajic",
-    "long_description": long_description,
-    "long_description_content_type": "text/markdown",
-    "url": "https://github.com/connectedcompany/alph",
-    "install_requires": [
+setup(
+    version=__version__,
+    name="alph",
+    description="alph",
+    author="Uros Rapajic",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/connectedcompany/alph",
+    license_files=["LICENSE"],
+    install_requires=[
         "altair>=4.1.0",
         "networkx>=2.6.3",
         "pandas<1.5.0",  # 1.5.0 causes ValueError: columns cannot be a set when plotting altair facets
@@ -28,8 +29,6 @@ config = {
         "scikit-network>=0.27.1",
         # "cython fa2 @ git+https://github.com/connectedcompany/forceatlas2.git@random-seed",
     ],
-    "python_requires": ">=3.8",
-    "packages": find_packages(exclude=["*tests.*", "*examples.*"]),
-}
-
-setup(**config)
+    python_requires=">=3.8",
+    packages=find_packages(exclude=["*tests.*", "*examples.*"]),
+)

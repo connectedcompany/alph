@@ -79,13 +79,19 @@ jobs:
         run: |
           python -mvenv venv-test-pypi
           source venv-test-pypi/bin/activate
-          pip install -U pip
+          pip install -U pip wheel # wheel allows us to test the licence is included
+
           pip install \
             --index-url https://test.pypi.org/simple/ \
             --extra-index-url https://pypi.org/simple \
-            $ARTEFACT
+            $ARTEFACT==$VERSION
 
+          # check import
           python -c "import $ROOT_PACKAGE.__version__; print($ROOT_PACKAGE.__version__.__version__)"
+
+          # ensure license is include
+          # **note** the Python version and update as needed
+          head -3 venv-test-pypi/lib/python3.8/site-packages/alph-$VERSION.dist-info/LICENSE
 
       - name: Publish distribution 📦 to PyPI
         uses: pypa/gh-action-pypi-publish@master

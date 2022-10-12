@@ -1,14 +1,10 @@
 # **alph** - <b>al</b>tair your gra<b>ph</b>
 
-A network visualisation library using [Altair](https://altair-viz.github.io/) for declarative, data driven renderering.
+A Python library using [Altair](https://altair-viz.github.io/) for declarative, data-driven network visualisation.
 
 ## Why
 
-Tidy, legible graph visualisations are rarely achieved at the first attempt. Usually some styling and layout tweaking is required, perhaps pruning too for larger graphs.
-
-The Python ecosystem has all the ingredients, however they span multiple libraries, each with its own learning curve, data formats and other idiosyncrasies.
-
-Alph aims to facilitate the creation of "legible" static graphs by making experiments with styling, layouts and structure easier and more consistent.
+Tidy, legible graph visualisations can be elusive. Alph helps by bringing together effective styling, layout and pruning options from across the Python ecosystem.
 
 ## How it works
 
@@ -96,7 +92,7 @@ See [`examples`](./examples). Here's a taster:
   dot, neato etc
 - Gephi ForceAtlas2 based on the
   [forceatlas2 Python implementation](https://github.com/bhargavchippada/forceatlas2) -
-  see [layout.py](./layout.py) for configuration options, and
+  see [layout.py](./alph/layout.py) for configuration options, and
   [this paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679)
   for more detail
 - ForceAtlas implementation within [scikit-network](https://github.com/sknetwork-team/scikit-network)
@@ -167,13 +163,12 @@ See [`examples`](./examples). Here's a taster:
 ## Known limitations
 
 - Node `size` attribute does not support all Altair options - currently only
-  `alt.value` and `alt.Size` with linear `domain` and `range` scales. More will be
-  supported as needed.
+  `alt.value` and `alt.Size` with linear `domain` and `range` scales. More can be
+  added as needed.
 
-  The reason for this is the desire to not burden the user with
-  having to calculate label and halo positions when node sizes vary.
-
-  Will review this tradeoff based on in-use experience.
+  This is a design choice, made to not burden the user with calculating things like
+  label and halo positions when node sizes vary. Will review this tradeoff based
+  on in-use experience.
 
 - One combo level currently supported
 

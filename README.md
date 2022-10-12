@@ -2,6 +2,14 @@
 
 A network visualisation library using [Altair](https://altair-viz.github.io/) for declarative, data driven renderering.
 
+## Why
+
+Tidy, legible graph visualisations are rarely achieved at the first attempt. Usually some styling and layout tweaking is required, perhaps pruning too for larger graphs.
+
+The Python ecosystem has all the ingredients, however they span multiple libraries, each with its own learning curve, data formats and other idiosyncrasies.
+
+Alph aims to facilitate the creation of "legible" static graphs by making experiments with styling, layouts and structure easier and more consistent.
+
 ## How it works
 
 1. Get your data into a NetworkX Graph
@@ -26,10 +34,10 @@ Best bet is probably to dive straight into the [examples](./examples/), and come
 pip install alph
 ```
 
-Additionally, we currently recommend installing the [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) library from our fork:
+Additionally, we currently recommend installing the [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) library from our fork, along with cython for speedup:
 
 ```
-pip install git+https://github.com/connectedcompany/forceatlas2.git@random-seed
+pip install cython git+https://github.com/connectedcompany/forceatlas2.git@random-seed
 ```
 
 > #### Why is this install separate?

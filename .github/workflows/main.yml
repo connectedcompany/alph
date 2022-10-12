@@ -37,6 +37,7 @@ jobs:
           pip install -U pip
           pip install -r dev_requirements.txt
           pip install -r requirements.txt
+          pip install cython git+https://github.com/connectedcompany/forceatlas2.git@random-seed
 
       - name: Unit tests
         run: |

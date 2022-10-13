@@ -82,7 +82,7 @@ jobs:
           pip install -U pip wheel # wheel allows us to test the licence is included
 
           # test pypi doesn't immediately make artefacts available
-          sleep 1m
+          sleep 20
 
           pip index \
             --index-url https://test.pypi.org/simple/ \

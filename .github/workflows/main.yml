@@ -83,7 +83,7 @@ jobs:
           pip install \
             --index-url https://test.pypi.org/simple/ \
             --extra-index-url https://pypi.org/simple \
-            $ARTEFACT
+            $ARTEFACT==$VERSION
 
           # check import
           python -c "import $ROOT_PACKAGE.__version__; print($ROOT_PACKAGE.__version__.__version__)"

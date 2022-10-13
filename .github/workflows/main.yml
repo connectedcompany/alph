@@ -85,7 +85,11 @@ jobs:
             --extra-index-url https://pypi.org/simple \
             $ARTEFACT
 
+          # check import
           python -c "import $ROOT_PACKAGE.__version__; print($ROOT_PACKAGE.__version__.__version__)"
+
+          # ensure license is include
+          head -3 venv/lib/python3.10/site-packages/alph-$VERSION.dist-info/LICENSE
 
       - name: Publish distribution 📦 to PyPI
         uses: pypa/gh-action-pypi-publish@master

@@ -20,6 +20,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/connectedcompany/alph",
+    license_files=["LICENSE"],
     install_requires=[
         "altair>=4.1.0",
         "networkx>=2.6.3",

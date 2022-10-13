@@ -80,6 +80,13 @@ jobs:
           python -mvenv venv-test-pypi
           source venv-test-pypi/bin/activate
           pip install -U pip wheel # wheel allows us to test the licence is included
+
+          sleep 1m
+          pip index \
+            --index-url https://test.pypi.org/simple/ \
+            --extra-index-url https://pypi.org/simple \
+            versions alph
+
           pip install \
             --index-url https://test.pypi.org/simple/ \
             --extra-index-url https://pypi.org/simple \

@@ -95,6 +95,7 @@ jobs:
           # check import
           python -c "import $ROOT_PACKAGE.__version__; print($ROOT_PACKAGE.__version__.__version__)"
 
+          ls -l venv/lib/python3.8/site-packages/
           ls -l venv/lib/python3.8/site-packages/alph-$VERSION.dist-info/
 
           # ensure license is include

@@ -81,7 +81,7 @@ jobs:
           source venv-test-pypi/bin/activate
           pip install -U pip wheel # wheel allows us to test the licence is included
 
-          sleep 10 # sometimes this is needed for test pypi to catch up
+          sleep 1m # sometimes this is needed for test pypi to catch up
 
           pip install \
             --index-url https://test.pypi.org/simple/ \

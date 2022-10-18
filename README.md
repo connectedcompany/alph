@@ -1,4 +1,4 @@
-# **alph** - <b>al</b>tair your gra<b>ph</b>
+# **alph** - <b>al</b>tair for your gra<b>ph</b>
 
 A Python library using [Altair](https://altair-viz.github.io/) for declarative, data-driven network visualisation.
 

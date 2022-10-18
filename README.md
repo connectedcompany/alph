@@ -2,6 +2,8 @@
 
 A Python library using [Altair](https://altair-viz.github.io/) for declarative, data-driven network visualisation.
 
+![Alph graph](examples/images/small_graph.png)
+
 ## Why
 
 Tidy, legible graph visualisations can be elusive. Alph helps by bringing together effective styling, layout and pruning options from across the Python ecosystem.

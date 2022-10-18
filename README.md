@@ -2,7 +2,7 @@
 
 A Python library using [Altair](https://altair-viz.github.io/) for declarative, data-driven network visualisation.
 
-![Alph graph](examples/images/small_graph.png | width=400)
+<img alt="Alph graph" src="examples/images/small_graph.png" width=50%/>
 
 ## Why
 

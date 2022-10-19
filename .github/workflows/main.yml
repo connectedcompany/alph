@@ -11,8 +11,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # fetch full history for all branches / tags as tests use this
       - uses: snyk/actions/setup@master
       - uses: actions/setup-python@v2
         with:

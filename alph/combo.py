@@ -7,6 +7,7 @@ from .util import nx_graph_from_edges
 EMPTY_COMBO_VALUE_PLACEHOLDER = "__combo_empty"
 COMBO_PROMOTED_NODE_ATTR = "__combo_promoted"
 COMBO_GROUP_VALUE_ATTR = "__combo_group_value"
+DEFAULT_AGGREGATED_EDGE_WEIGHT_ATTR = "weight"
 
 
 def combo_graph_mapper(
@@ -15,6 +16,7 @@ def combo_graph_mapper(
     combo_node_additional_attrs: dict = None,
     weight_attr=None,
     weight_threshold=None,
+    aggregated_edge_weight_attr=None,
     empty_combo_attr_action="drop",
     empty_combo_attr_fill_source="",  #  None is problematic as key, for display etc
     include_edgeless_combo_nodes=True,
@@ -31,6 +33,11 @@ def combo_graph_mapper(
         isinstance(combo_group_by, str) or len(combo_group_by) == 1
     ), "for now, just one layer"
     assert empty_combo_attr_action in ["drop", "group", "promote"]
+
+    if aggregated_edge_weight_attr is None:
+        aggregated_edge_weight_attr = (
+            weight_attr if weight_attr else DEFAULT_AGGREGATED_EDGE_WEIGHT_ATTR
+        )
 
     combo_group_by = (
         combo_group_by if isinstance(combo_group_by, str) else combo_group_by[0]
@@ -87,9 +94,9 @@ def combo_graph_mapper(
         .groupby(["source", "target"], dropna=False)
         .agg(
             **{
-                weight_attr: (
-                    (weight_attr, "sum") if weight_attr else ("target", "count")
-                )
+                aggregated_edge_weight_attr: (weight_attr, "sum")
+                if weight_attr
+                else ("target", "count")
             }
         )
         .reset_index()

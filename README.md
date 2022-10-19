@@ -28,31 +28,41 @@ Best bet is probably to dive straight into the [examples](./examples/), and come
 
 ## Installation
 
+### Minimal
+
 ```
 pip install alph
 ```
 
-Additionally, we currently recommend installing the [ForceAtlas2](https://github.com/bhargavchippada/forceatlas2) library from our fork, along with cython for speedup:
+### Recommended
 
 ```
+# 1. for graphviz layout support, install graphviz on your platform or download from https://graphviz.org/download/
+#    e.g. brew install graphviz on Mac, sudo apt install graphviz on Debian / Ubuntu etc
+
+# 2. Install alph with graphviz support
+pip install alph[graphviz]
+
+# 3. Install the ForceAtlas2 layout library from our fork, along with cython for speedup
 pip install cython git+https://github.com/connectedcompany/forceatlas2.git@random-seed
 ```
 
-> #### Why is this install separate?
+> #### Why is the ForceAtlas2 install separate?
 >
 > [ForceAtlas2](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679) is a classic,
-> user feedback led layout algorithm from the [Gephi](https://gephi.org/) team, and the [forceatlas2 package](https://github.com/bhargavchippada/forceatlas2)
+> user feedback led layout algorithm from the [Gephi](https://gephi.org/) team, and the [ForceAtlas2 library](https://github.com/bhargavchippada/forceatlas2)
 > implementation is an excellent, performant Python port.
 >
-> Recently, releases of that package have been sporradic, though there have been assurances about intent
-> to maintain it long term. Hence we've created a temporary fork to be able to roll in changes. Currently,
-> the fork incorporates a simple change that enables deterministic layouts.
+> There are two things to be aware of:
 >
-> The fact that the library, and some of the works it is derived from, are GPL licensed means care is needed
-> when distributing and linking to it. Hence we're making its install optional.
+> 1. **GPL licence** - the ForceAtlas2 library, and some of the works it is derived from, are GPL licensed -
+>    hence care is needed when distributing and linking to it. We thus intend to keep its install optional
+>    long term. Since alph uses a plugin design for layout providers, this is straightforward for us to
+>    accommodate, and maintain explicit separation for use cases where GPL is an issue.
 >
-> Since alph uses a plugin design for layout providers (see below for the various options), this is
-> straightforward for us to accommodate, and maintain explicit separation if GPL is an issue.
+> 2. **Our fork** - recently, releases of the library have been sporradic - though there is stated intent for
+>    regular maintenance to resume. In the meantime, we've created a temporary fork to be able to roll in
+>    changes. Currently, our fork incorporates a simple change that enables deterministic layouts.
 
 ## Usage
 

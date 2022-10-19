@@ -36,9 +36,8 @@ pip install alph
 
 ### Recommended
 
-1. for graphviz layout support, install graphviz on your platform  
-   e.g. `brew install graphviz` on Mac, `sudo apt install graphviz` on Debian / Ubuntu etc  
-   or [download the installer](https://graphviz.org/download/)
+1. for graphviz layout support, install graphviz on your platform - e.g. `brew install graphviz` on Mac,
+   `sudo apt install graphviz` on Debian / Ubuntu etc - or [download the installer](https://graphviz.org/download/)
 
 2. Install alph with graphviz support:
    ```
@@ -50,13 +49,12 @@ pip install alph
    pip install cython git+https://github.com/connectedcompany/forceatlas2.git@random-seed
    ```
 
+
 > #### Why is the ForceAtlas2 install separate?
 >
 > [ForceAtlas2](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0098679) is a classic,
 > user feedback led layout algorithm from the [Gephi](https://gephi.org/) team, and the [ForceAtlas2 library](https://github.com/bhargavchippada/forceatlas2)
-> implementation is an excellent, performant Python port.
->
-> There are two things to be aware of:
+> implementation is an excellent, performant Python port. There are two things to be aware of:
 >
 > 1. **GPL licence** - the ForceAtlas2 library, and some of the works it is derived from, are GPL licensed -
 >    hence care is needed when distributing and linking to it. We thus intend to keep its install optional

@@ -28,7 +28,7 @@ Best bet is probably to dive straight into the [examples](./examples/), and come
 
 ## Installation
 
-### Minimal
+### Minimal
 
 ```
 pip install alph
@@ -36,16 +36,19 @@ pip install alph
 
 ### Recommended
 
-```
-# 1. for graphviz layout support, install graphviz on your platform or download from https://graphviz.org/download/
-#    e.g. brew install graphviz on Mac, sudo apt install graphviz on Debian / Ubuntu etc
+1. for graphviz layout support, install graphviz on your platform  
+   e.g. `brew install graphviz` on Mac, `sudo apt install graphviz` on Debian / Ubuntu etc  
+   or [download the installer](https://graphviz.org/download/)
 
-# 2. Install alph with graphviz support
-pip install alph[graphviz]
-
-# 3. Install the ForceAtlas2 layout library from our fork, along with cython for speedup
-pip install cython git+https://github.com/connectedcompany/forceatlas2.git@random-seed
-```
+2. Install alph with graphviz support:
+   ```
+   pip install alph[graphviz]
+   ```
+   
+3. Install the ForceAtlas2 layout library from our fork, along with cython for speedup
+   ```
+   pip install cython git+https://github.com/connectedcompany/forceatlas2.git@random-seed
+   ```
 
 > #### Why is the ForceAtlas2 install separate?
 >

@@ -23,6 +23,7 @@ setup(
     license_files=["LICENSE"],
     install_requires=[
         "altair>=4.1.0",
+        "jsonschema<4.17",  # TEMPORARY - until fix for this is merged into altair: https://github.com/altair-viz/altair/issues/2705, either via 5.0 or via intermediate release - https://github.com/altair-viz/altair/pull/2827
         "networkx>=2.6.3",
         "pandas<1.5.0",  # 1.5.0 causes ValueError: columns cannot be a set when plotting altair facets
         "scikit-network>=0.27.1",

@@ -23,7 +23,7 @@ setup(
     license_files=["LICENSE"],
     install_requires=[
         "altair>=4.1.0",
-        "networkx>=2.6.3",
+        "networkx>=2.6.3<3",
         "pandas<1.5.0",  # 1.5.0 causes ValueError: columns cannot be a set when plotting altair facets
         "scikit-network>=0.27.1",
         # "cython fa2 @ git+https://github.com/connectedcompany/forceatlas2.git@random-seed",

@@ -43,12 +43,10 @@ pip install alph
    ```
    pip install alph[graphviz]
    ```
-   
 3. Install the ForceAtlas2 layout library from our fork, along with cython for speedup
    ```
-   pip install cython git+https://github.com/connectedcompany/forceatlas2.git@random-seed
+   pip install cython git+https://github.com/connectedcompany/forceatlas2.git
    ```
-
 
 > #### Why is the ForceAtlas2 install separate?
 >

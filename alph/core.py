@@ -37,6 +37,10 @@ def alph(
     combo_size_scale_domain=DEFAULT_COMBO_SIZE_SCALE_DOMAIN,
     combo_size_scale_range=DEFAULT_COMBO_SIZE_SCALE_RANGE,
     combo_inner_graph_scale_factor=DEFAULT_COMBO_INNER_GRAPH_SCALE_FACTOR,
+    combo_edge_weight_agg_attr=None,
+    combo_edge_agg_attrs=None,
+    combo_edge_weight_threshold=None,
+    include_edgeless_combo_nodes=True,
     # data args
     non_serializable_datetime_format="%d %b %Y",
     # main viz args
@@ -65,6 +69,12 @@ def alph(
     :param combo_size_scale_range:          Combo node size range
     :param combo_inner_graph_scale_factor   Scale down inner graph to fit inside combo nodes by this
                                             factor - normally < 1
+    :param combo_edge_weight_agg_attr:      How to aggregate node edges that span combo groups; overrides weight_attr, can use values
+                                            given via combo_edge_agg_attrs. If not set and weight_attr not given, falls back to simple edge count.
+    :param combo_edge_agg_attrs:            Pandas groupby-style dict, describing how to aggregate edge attributes that span nodes -
+                                            for example {"combo_edge_attr_name": ("edge_attr_name", "sum")}
+    :param combo_edge_weight_threshold:     Drop edges below this weight
+    :param include_edgeless_combo_nodes:    Whether or not to incorporate disconnected combo nodes
     :param non_serializable_datetime_format: Format string for datetime and other temporal types that may
                                             appear in the dataset and trip up Altair
     :param width:                           Figure width (px)
@@ -135,12 +145,14 @@ def alph(
         inter_combo_G, intra_combo_Gs = combo.combo_graph_mapper(
             G,
             combo_group_by=combo_group_by,
-            combo_node_additional_attrs=combo_node_additional_attrs,
             weight_attr=weight_attr,
+            combo_edge_weight_agg_attr=combo_edge_weight_agg_attr,
+            combo_edge_weight_threshold=combo_edge_weight_threshold,
+            combo_node_additional_attrs=combo_node_additional_attrs,
+            combo_edge_agg_attrs=combo_edge_agg_attrs,
             empty_combo_attr_action=combo_empty_attr_action,
+            include_edgeless_combo_nodes=include_edgeless_combo_nodes,
             # empty_combo_attr_fill_source=combo_empty_attr_fill_source,
-            # weight_threshold=None,
-            # include_edgeless_combo_nodes=True,
         )
 
         combo_pos = (

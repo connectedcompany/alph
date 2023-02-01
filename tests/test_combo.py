@@ -1,6 +1,7 @@
 import networkx as nx
 import pandas as pd
 import pytest
+
 from alph import combo
 
 
@@ -38,10 +39,10 @@ def G_with_empties():
     )
     G.add_edges_from(
         [
-            ("a", "b", {"weight": 0.1}),
-            ("a", "c", {"weight": 0.2}),
-            ("b", "c", {"weight": 0.3}),
-            ("b", "d", {"weight": 0.5}),
+            ("a", "b", {"weight": 0.1, "weighted_age": 0.1 * 12}),
+            ("a", "c", {"weight": 0.2, "weighted_age": 0.2 * 5}),
+            ("b", "c", {"weight": 0.3, "weighted_age": 0.3 * 22}),
+            ("b", "d", {"weight": 0.5, "weighted_age": 0.5 * 2}),
         ]
     )
     return G
@@ -186,7 +187,7 @@ class Test_combo_graphs:
         assert [n for n in intra_combo_Gs[empty_cat("b")].nodes()] == ["b"]
         assert [n for n in intra_combo_Gs[empty_cat("d")].nodes()] == ["d"]
 
-    def test_add_node_attrs(self, G_with_empties):
+    def test_add_combo_node_attrs(self, G_with_empties):
         # **drop** empty combo attr nodes
         inter_combo_G, _ = combo.combo_graph_mapper(
             G_with_empties,
@@ -197,6 +198,17 @@ class Test_combo_graphs:
         )
         assert [n for n in inter_combo_G.nodes()] == ["uno"]
         assert inter_combo_G.nodes["uno"] == {"attr1": 1, "attr2": 2}
+
+    def test_weigh_edges_by_aggregated_custom_edge_attr(self, G_with_empties):
+        inter_combo_G, _ = combo.combo_graph_mapper(
+            G_with_empties,
+            combo_group_by="team",
+            empty_combo_attr_action="promote",
+            combo_edge_weight_agg_attr="weighted_age",
+            combo_edge_agg_attrs={"weighted_age": ("weighted_age", "mean")},
+        )
+
+        assert [w for _, _, w in inter_combo_G.edges(data="weighted_age")] == [1, 3.9]
 
     # TODO:
     # - test use of name field as group label

@@ -7,23 +7,30 @@ from .util import nx_graph_from_edges
 EMPTY_COMBO_VALUE_PLACEHOLDER = "__combo_empty"
 COMBO_PROMOTED_NODE_ATTR = "__combo_promoted"
 COMBO_GROUP_VALUE_ATTR = "__combo_group_value"
-DEFAULT_AGGREGATED_EDGE_WEIGHT_ATTR = "weight"
+NEW_COMBO_EDGE_WEIGHT_AGG_ATTR_NAME = "weight"
 
 
 def combo_graph_mapper(
     G,
     combo_group_by,
-    combo_node_additional_attrs: dict = None,
     weight_attr=None,
-    weight_threshold=None,
-    aggregated_edge_weight_attr=None,
+    combo_edge_weight_agg_attr=None,
+    combo_edge_weight_threshold=None,
+    combo_node_additional_attrs: dict = None,
+    combo_edge_agg_attrs: dict = None,
     empty_combo_attr_action="drop",
     empty_combo_attr_fill_source="",  #  None is problematic as key, for display etc
     include_edgeless_combo_nodes=True,
 ):
     """
     :param combo_group_by:              Attribute to group nodes by when forming combo nodes
-    :params empty_combo_attr_action:    What to do for nodes without combo attr:
+    :param weight_attr:                 Edge weight attr, if one exists, and combo_edge_weight_agg_attr not specificed,
+                                        will be used for aggregation; otherwise
+    :param combo_edge_weight_agg_attr:  How to aggregate node edges that span combo groups; overrides weight_attr, can use values
+                                        given via combo_edge_agg_attrs. If not set and weight_attr not given, falls back to simple edge count.
+    :param combo_edge_agg_attrs:        Pandas groupby-style dict, describing how to aggregate edge attributes that span nodes -
+                                        for example {"combo_edge_attr_name": ("edge_attr_name", "sum")}
+    :param empty_combo_attr_action:     What to do for nodes without combo attr:
                                         - "drop" drops them
                                         - "group" treats empty combo attr as own category
                                         - "promote" creates a combo category for each item
@@ -34,9 +41,17 @@ def combo_graph_mapper(
     ), "for now, just one layer"
     assert empty_combo_attr_action in ["drop", "group", "promote"]
 
-    if aggregated_edge_weight_attr is None:
-        aggregated_edge_weight_attr = (
-            weight_attr if weight_attr else DEFAULT_AGGREGATED_EDGE_WEIGHT_ATTR
+    combo_edge_weight_agg_attr = (
+        combo_edge_weight_agg_attr or weight_attr or NEW_COMBO_EDGE_WEIGHT_AGG_ATTR_NAME
+    )
+    combo_edge_agg_attrs = combo_edge_agg_attrs or {}
+    if combo_edge_weight_agg_attr not in combo_edge_agg_attrs:
+        combo_edge_agg_attrs.update(
+            {
+                combo_edge_weight_agg_attr: (weight_attr, "sum")
+                if weight_attr
+                else ("target", "count")
+            }
         )
 
     combo_group_by = (
@@ -92,13 +107,7 @@ def combo_graph_mapper(
     combo_edges = (
         df[combo_edge_selector]
         .groupby(["source", "target"], dropna=False)
-        .agg(
-            **{
-                aggregated_edge_weight_attr: (weight_attr, "sum")
-                if weight_attr
-                else ("target", "count")
-            }
-        )
+        .agg(**combo_edge_agg_attrs)
         .reset_index()
     )
 
@@ -118,7 +127,8 @@ def combo_graph_mapper(
             }
             for id in inter_combo_G_nodes
         },
-        weight_threshold=weight_threshold,
+        weight_attr=combo_edge_weight_agg_attr,
+        weight_threshold=combo_edge_weight_threshold,
         add_missing_node_attr_nodes=True,  # want combo nodes even if they don't have any edges
     )
 

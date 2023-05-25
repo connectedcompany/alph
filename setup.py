@@ -27,7 +27,7 @@ setup(
         "networkx>=2.6.3",
         "pandas>=1.3.5",
         "scikit-network>=0.27.1",
-        # cython fa2 @ git+https://github.com/connectedcompany/forceatlas2.git"
+        # also cython, fa2, @ git+https://github.com/connectedcompany/forceatlas2.git"
     ],
     extras_require={
         "graphviz": [

@@ -46,7 +46,9 @@ def _wrap_altair_str_value(val):
 
 
 def _nx_nodes_to_pandas(G, pos):
-    attributes = set(["x", "y"] + [k for n in G.nodes() for k in G.nodes[n].keys()])
+    attributes = list(
+        set(["x", "y"] + [k for n in G.nodes() for k in G.nodes[n].keys()])
+    )
 
     df = pd.DataFrame(index=G.nodes(), columns=attributes)
 

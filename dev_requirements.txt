@@ -1,7 +1,7 @@
-black       # code formatting
-faker       # generate fake data for examples
-jupyterlab  # used to render github-friendly altair mime renders
-nbmake      # test notebooks
+black         # code formatting
+faker         # generate fake data for examples
+jupyterlab>=4 # used to render github-friendly altair mime renders; <v4 fails looking for Vega 5 renderer
+nbmake        # test notebooks
 pytest
 twine
 wheel

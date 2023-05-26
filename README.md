@@ -21,7 +21,7 @@ Best bet is probably to dive straight into the [examples](./examples/), and come
 
 - plot any NetworkX Graph
 - support for any layout expressed as a NetworkX `pos` structure (a dict like `{node_id: (x,y), ...}`)
-- several readily accessible and tunable layout functions (see [example](examples/3_layouts_gallery.ipynb))
+- several readily accessible and tuneable layout functions (see [example](examples/3_layouts_gallery.ipynb))
 - Altair-style data driven node and edge styling - size, colour, stroke, opacity, scales, conditionals and more
 - convenience args for node labels, halos
 - experimental 1-level "combo" node support
@@ -59,7 +59,7 @@ pip install alph
 >    long term. Since alph uses a plugin design for layout providers, this is straightforward for us to
 >    accommodate, and maintain explicit separation for use cases where GPL is an issue.
 >
-> 2. **Our fork** - recently, releases of the library have been sporradic - though there is stated intent for
+> 2. **Our fork** - recently, releases of the library have been sporadic - though there is stated intent for
 >    regular maintenance to resume. In the meantime, we've created a temporary fork to be able to roll in
 >    changes. Currently, our fork incorporates a simple change that enables deterministic layouts.
 

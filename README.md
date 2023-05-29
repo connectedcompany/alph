@@ -80,14 +80,15 @@ alph(G, weight_attr="weight")
 
 See [`examples`](./examples). Here's an overview:
 
-- Basic styling (from the [styling example](examples/2_styling.ipynb)):
-  ![Styling](https://github.com/uros-r/alph/blob/colab-friendly-examples/examples/images/styling.png?raw=true)
 - Some of the supported layouts (from the [layouts gallery example](examples/3_layouts_gallery.ipynb)):
   ![Layouts gallery](https://github.com/connectedcompany/alph/raw/main/examples/images/layouts.png)
 
 - Use of geolocation coordinates for graph layout, (from the [flight routes example](examples/5_flight_routes.ipynb)):
   ![Geo-location based layout](https://github.com/connectedcompany/alph/raw/main/examples/images/flight_routes.png)
 
+- Basic styling (from the [styling example](examples/2_styling.ipynb)):
+  ![Styling](https://github.com/uros-r/alph/blob/colab-friendly-examples/examples/images/styling.png?raw=true)
+  
 - A styled interaction network (from the [dolphins example](examples/4_dolphins.ipynb)):
   ![Dolphins](https://github.com/connectedcompany/alph/raw/main/examples/images/dolphins.png)
 

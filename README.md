@@ -2,7 +2,7 @@
 
 A Python library using [Altair](https://altair-viz.github.io/) for declarative, data-driven network visualisation.
 
-<p align="center"><img alt="Alph graph" src="examples/images/small_graph.png" width=60%/></p>
+<p align="center"><img alt="Alph graph" src="https://github.com/connectedcompany/alph/raw/main/examples/images/small_graph.png" width=60%/></p>
 
 ## Why
 
@@ -37,7 +37,7 @@ pip install alph
 ### Recommended
 
 1. for graphviz layout support, install graphviz on your platform - e.g. `brew install graphviz` on Mac,
-   `sudo apt install graphviz` on Debian / Ubuntu etc - or [download the installer](https://graphviz.org/download/)
+   `sudo apt install libgraphviz-dev graphviz` on Colab, Debian, Ubuntu etc - or [download the installer](https://graphviz.org/download/)
 
 2. Install alph with graphviz support:
    ```
@@ -45,7 +45,7 @@ pip install alph
    ```
 3. Install the ForceAtlas2 layout library from our fork, along with cython for speedup
    ```
-   pip install cython git+https://github.com/connectedcompany/forceatlas2.git
+   pip install cython "git+https://github.com/connectedcompany/forceatlas2.git"
    ```
 
 > #### Why is the ForceAtlas2 install separate?
@@ -78,19 +78,21 @@ alph(G, weight_attr="weight")
 
 ## Examples
 
-See [`examples`](./examples). Here's a taster:
+See [`examples`](./examples). Here's an overview:
 
+- Basic styling (from the [styling example](examples/2_styling.ipynb)):
+  ![Styling](https://github.com/uros-r/alph/blob/colab-friendly-examples/examples/images/styling.png?raw=true)
 - Some of the supported layouts (from the [layouts gallery example](examples/3_layouts_gallery.ipynb)):
-  ![Layouts gallery](examples/images/layouts.png)
+  ![Layouts gallery](https://github.com/connectedcompany/alph/raw/main/examples/images/layouts.png)
 
 - Use of geolocation coordinates for graph layout, (from the [flight routes example](examples/5_flight_routes.ipynb)):
-  ![Geo-location based layout](examples/images/flight_routes.png)
+  ![Geo-location based layout](https://github.com/connectedcompany/alph/raw/main/examples/images/flight_routes.png)
 
 - A styled interaction network (from the [dolphins example](examples/4_dolphins.ipynb)):
-  ![Dolphins](examples/images/dolphins.png)
+  ![Dolphins](https://github.com/connectedcompany/alph/raw/main/examples/images/dolphins.png)
 
 - "Combo"-style layout (experimental) - category-driven node grouping with edge weight aggregation, from the [Les Mis example](examples/6_les_mis_experimental_combo.ipynb):
-  ![Combo layout](examples/images/combo.png)
+  ![Combo layout](https://github.com/connectedcompany/alph/raw/main/examples/images/combo.png)
 
 ---
 

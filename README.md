@@ -2,7 +2,7 @@
 
 A Python library using [Altair](https://altair-viz.github.io/) for declarative, data-driven network visualisation.
 
-<p align="center"><img alt="Alph graph" src="examples/images/small_graph.png" width=60%/></p>
+<p align="center"><img alt="Alph graph" src="https://github.com/connectedcompany/alph/raw/main/examples/images/small_graph.png" width=60%/></p>
 
 ## Why
 
@@ -81,16 +81,16 @@ alph(G, weight_attr="weight")
 See [`examples`](./examples). Here's a taster:
 
 - Some of the supported layouts (from the [layouts gallery example](examples/3_layouts_gallery.ipynb)):
-  ![Layouts gallery](examples/images/layouts.png)
+  ![Layouts gallery](https://github.com/connectedcompany/alph/raw/main/examples/images/layouts.png)
 
 - Use of geolocation coordinates for graph layout, (from the [flight routes example](examples/5_flight_routes.ipynb)):
-  ![Geo-location based layout](examples/images/flight_routes.png)
+  ![Geo-location based layout](https://github.com/connectedcompany/alph/raw/main/examples/images/flight_routes.png)
 
 - A styled interaction network (from the [dolphins example](examples/4_dolphins.ipynb)):
-  ![Dolphins](examples/images/dolphins.png)
+  ![Dolphins](https://github.com/connectedcompany/alph/raw/main/examples/images/dolphins.png)
 
 - "Combo"-style layout (experimental) - category-driven node grouping with edge weight aggregation, from the [Les Mis example](examples/6_les_mis_experimental_combo.ipynb):
-  ![Combo layout](examples/images/combo.png)
+  ![Combo layout](https://github.com/connectedcompany/alph/raw/main/examples/images/combo.png)
 
 ---
 

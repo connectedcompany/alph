@@ -41,7 +41,7 @@ pip install alph
 
 2. Install alph with graphviz support:
    ```
-   pip install alph[graphviz]
+   pip install "alph[graphviz]"
    ```
 3. Install the ForceAtlas2 layout library from our fork, along with cython for speedup
    ```
@@ -103,7 +103,7 @@ See [`examples`](./examples). Here's an overview:
 
 - [NetworkX layouts](https://networkx.org/documentation/stable/reference/drawing.html#module-networkx.drawing.layout): Spring, Fruchterman-Reingold, etc
 - NetworkX-wrapped [graphviz layouts](https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_agraph.graphviz_layout.html):
-  dot, neato etc
+  dot, neato etc. You can use `args` for specific layouts - for example, for neato: `args="-Goverlap=scale -Gstart=123"`
 - Gephi ForceAtlas2 based on the
   [forceatlas2 Python implementation](https://github.com/bhargavchippada/forceatlas2) -
   see [layout.py](./alph/layout.py) for configuration options, and

@@ -61,7 +61,7 @@ jobs:
 
       - name: Publish distribution 📦 to Test PyPI
         run: |
-          poetry publish --repository testpypi --username __token__ --password ${{ secrets.TEST_PYPI_API_TOKEN }}
+          poetry publish --repository testpypi
         env:
           POETRY_HTTP_BASIC_TESTPYPI_USERNAME: __token__
           POETRY_HTTP_BASIC_TESTPYPI_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
@@ -92,7 +92,7 @@ jobs:
 
       - name: Publish distribution 📦 to PyPI with Poetry
         run: |
-          poetry publish --username __token__ --password ${{ secrets.PYPI_API_TOKEN }}
+          poetry publish
         env:
           POETRY_HTTP_BASIC_PYPI_USERNAME: __token__
           POETRY_HTTP_BASIC_PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}

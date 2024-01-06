@@ -61,6 +61,7 @@ jobs:
 
       - name: Publish distribution 📦 to Test PyPI
         run: |
+          poetry config repositories.testpypi https://test.pypi.org/legacy/
           poetry publish --repository testpypi
         env:
           POETRY_HTTP_BASIC_TESTPYPI_USERNAME: __token__

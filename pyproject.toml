@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "alph"
-version = "0.4.3"
+version = "0.4.4"
 description = "alph"
 authors = ["Uros Rapajic"]
 license = "MIT"
@@ -17,6 +17,8 @@ pygraphviz = { version = ">=1.10", optional = true }
 python = "^3.9"
 scikit-network = ">=0.27.1"
 # also forceatlas2 with cython via fa2 = { git = "https://github.com/connectedcompany/forceatlas2.git" }  
+cython = "^3.0.7"
+fa2 = {git = "https://github.com/connectedcompany/forceatlas2.git"}
 
 [tool.poetry.extras]
 graphviz = ["pygraphviz"]

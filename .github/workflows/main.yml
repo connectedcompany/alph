@@ -46,6 +46,9 @@ jobs:
 
       - name: Tag and push
         run: |
+          # remove optional dependencies that we don't distribute
+          poetry remove cython fa2
+          
           # get git user deets from last commit
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"

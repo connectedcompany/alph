@@ -36,7 +36,7 @@ jobs:
 
       - name: Unit tests
         run: |
-          poetry run pytest -s --nbmake  --ignore=examples/5_flight_routes.ipynb tests/ examples/
+          PYTHONPATH=. poetry run pytest -s --nbmake  --ignore=examples/5_flight_routes.ipynb tests/ examples/
 
       - name: Snyk package deps scan
         run: |

@@ -14,39 +14,33 @@ jobs:
       - uses: snyk/actions/setup@master
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
 
       - name: Setup environment
         run: |
           echo "ARTEFACT=alph" >> $GITHUB_ENV
           echo "ROOT_PACKAGE=alph" >> $GITHUB_ENV
 
-      - name: Set version
+      - name: Install and configure poetry
         run: |
-          IFS="." read -ra LAST_VER <<< $(grep '^__version__' $ROOT_PACKAGE/__version__.py | cut -d'"' -f2) \
-            && VERSION=${LAST_VER[0]}.${LAST_VER[1]}.$((${LAST_VER[2]}+1)) \
-            && echo "VERSION=$VERSION" >> $GITHUB_ENV
+          python -m pip install poetry
+          python -m poetry config virtualenvs.in-project true
 
       - name: Install deps
         run: |
+          curl -sSL https://install.python-poetry.org | python3 -
           sudo apt install graphviz graphviz-dev
-          python -mvenv venv
-          source venv/bin/activate
-          pip install -U pip
-          pip install -r dev_requirements.txt
-          pip install -r requirements.txt
-          pip install cython git+https://github.com/connectedcompany/forceatlas2.git
+          poetry install --no-root --all-extras
+
+          poetry add cython git+https://github.com/connectedcompany/forceatlas2.git
 
       - name: Unit tests
         run: |
-          python -mvenv venv
-          source venv/bin/activate
-          PYTHONPATH=. pytest -s --nbmake  --ignore=examples/5_flight_routes.ipynb tests/ examples/
+          poetry run pytest -s --nbmake  --ignore=examples/5_flight_routes.ipynb tests/ examples/
 
       - name: Snyk package deps scan
         run: |
-          source venv/bin/activate
-          snyk test --file=setup.py
+          snyk test --file=poetry.lock
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
@@ -56,25 +50,25 @@ jobs:
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
 
-          git tag v$VERSION -m "Version $VERSION"
-          sed -i -E 's/(__version__\s*=\s*")\S+\.\S+\.\S+(")/\1'$VERSION'\2/g' $ROOT_PACKAGE/__version__.py
-          git add $ROOT_PACKAGE/__version__.py && git commit -m "Version ${VERSION}"
+          poetry version patch
+          git tag v$(poetry version --short) -m "Version $(poetry version --short)"
+          git add pyproject.toml poetry.lock && git commit -m "Version $(poetry version --short)"
           git push --follow-tags
 
-      - name: Prepare PyPI distribution
+      - name: Build the package
         run: |
-          rm -rf build dist *.egg-info || true
-          source venv/bin/activate
-          python setup.py sdist bdist_wheel
+          poetry build
 
       - name: Publish distribution 📦 to Test PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
+        run: |
+          poetry publish --repository testpypi
+        env:
+          POETRY_HTTP_BASIC_TESTPYPI_USERNAME: __token__
+          POETRY_HTTP_BASIC_TESTPYPI_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
 
       # REMOVING this step as waiting for test pypi-published artefact to become available
       # seems to take variable amounts of time - from near immediate to > 2min.
+      # If reinstated, needs to be made to work with pypi
       #
       # - name: Test install
       #   run: |
@@ -96,7 +90,9 @@ jobs:
       #     # **note** the Python version and update as needed
       #     head -3 venv-test-pypi/lib/python3.8/site-packages/alph-$VERSION.dist-info/LICENSE
 
-      - name: Publish distribution 📦 to PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Publish distribution 📦 to PyPI with Poetry
+        run: |
+          poetry publish
+        env:
+          POETRY_HTTP_BASIC_PYPI_USERNAME: __token__
+          POETRY_HTTP_BASIC_PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}

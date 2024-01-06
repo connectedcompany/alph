@@ -48,6 +48,7 @@ def alph(
     height=DEFAULT_HEIGHT,
     prop_kwargs=None,
     padding=None,
+    nodes_layer_params=None,
 ):
     """Plot NetworkX Graph with altair
 
@@ -83,6 +84,7 @@ def alph(
     :param padding:                         Padding inside figure edges. No node centres will be placed outside
                                             this boundary. As well as aesthetically, this is useful for ensuring
                                             nodes / captions stay inside the figure frame.
+    :param nodes_layer_params:              Altair params to be added to the nodes layer via .add_params() - typically a selection
     """
 
     G = G.copy()
@@ -172,7 +174,8 @@ def alph(
                 **{
                     **dict(size=50, fill=alt.value("black")),
                     **node_args,
-                }
+                },
+                layer_params=nodes_layer_params,
             ),
             edges_layer=ll.default_intra_combo_edges_layer(
                 weight_attr=weight_attr, **edge_args
@@ -198,7 +201,7 @@ def alph(
         final_layers = ll.apply_layers(
             [
                 ll.edges_layer(weight_attr=weight_attr, **edge_args),
-                ll.default_nodes_layer(**node_args),
+                ll.default_nodes_layer(**node_args, layer_params=nodes_layer_params),
             ],
             G,
             pos,

@@ -88,7 +88,6 @@ See [`examples`](./examples). Here's an overview:
 
 - Basic styling (from the [styling example](examples/2_styling.ipynb)):
   ![Styling](https://github.com/uros-r/alph/blob/colab-friendly-examples/examples/images/styling.png?raw=true)
-  
 - A styled interaction network (from the [dolphins example](examples/4_dolphins.ipynb)):
   ![Dolphins](https://github.com/connectedcompany/alph/raw/main/examples/images/dolphins.png)
 
@@ -133,13 +132,14 @@ See [`examples`](./examples). Here's an overview:
 | edge_node_additional_attrs       | dict                   |                      | Attributes to add to combo node edges, like `{"edge_attr_name": agg_fn}`; agg fn is applied across all attr values for edges that link grouped nodes                                        |
 | combo_empty_attr_action          | drop, group or promote | `drop`               | What to do with nodes that have an empty value for the combo_group_by attribute                                                                                                             |
 | combo_size_scale_domain          | 2-item list or tuple   | `[0, 25]`            | Lower/upper bound of num nodes to apply to combo node size range                                                                                                                            |
-| combo_size_scale_range           | 2-item list or tuple   | `[6**2, 180**2]`       | Combo node size range                                                                                                                                                                       |
+| combo_size_scale_range           | 2-item list or tuple   | `[6**2, 180**2]`     | Combo node size range                                                                                                                                                                       |
 | combo_inner_graph_scale_factor   | float                  | `0.6`                | Scale down inner graph to fit inside combo nodes by this factor - normally <1                                                                                                               |
 | non_serializable_datetime_format | str                    | `%d %b %Y`           | Format string for non-serialisable date / time types that otherwise break Altair                                                                                                            |
 | width                            | int                    | `800`                | Figure width (px)                                                                                                                                                                           |
 | height                           | int                    | `600`                | Figure height (px)                                                                                                                                                                          |
 | prop_kwargs                      | dict                   |                      | Optional properties such as title                                                                                                                                                           |
 | padding                          | int                    |                      | Padding inside figure edges. No node centres will be placed outside this boundary.                                                                                                          |
+| nodes_layer_params               | selection or other     |                      | Altair params to be added to the nodes layer via `.add_params()` - typically a selection                                                                                                    |
 
 ### Node args
 

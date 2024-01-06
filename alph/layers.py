@@ -113,6 +113,7 @@ def nodes_layer(
     label_size=10,
     label_color="black",
     label_text_align="center",
+    layer_params=None,
 ):
     """Note the use of r rather than size - more in comment below"""
     size = _wrap_altair_numeric_value(size)
@@ -215,6 +216,9 @@ def nodes_layer(
             )
             res += labels
 
+        if layer_params is not None:
+            res = res.add_params(layer_params)
+
         return res
 
     return inner
@@ -250,7 +254,7 @@ def edges_layer(
             )
 
         data = _nx_edges_to_pandas(G, pos)
-        return (
+        res = (
             alt.Chart(data)
             .mark_line()
             .encode(
@@ -264,6 +268,7 @@ def edges_layer(
                 )
             )
         )
+        return res
 
     return inner
 

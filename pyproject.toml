@@ -22,7 +22,7 @@ scikit-network = ">=0.27.1"
 graphviz = ["pygraphviz"]
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.12.1" # code formatting
+black = ">=23.12.1,<25.0.0" # code formatting
 Faker = "^22.0.0"  # generate fake data for examples
 # jupyterlab = ">=4"  # used to render github-friendly altair mime renders; <v4 fails looking for Vega 5 renderer
 nbmake = "^1.4.6"

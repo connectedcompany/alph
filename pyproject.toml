@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "alph"
-version = "0.4.11"
+version = "0.4.12"
 description = "alph"
 authors = ["Uros Rapajic"]
 license = "MIT"
